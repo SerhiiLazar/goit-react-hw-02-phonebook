@@ -3,13 +3,17 @@ import Contacts from './Contacts';
 import { nanoid } from 'nanoid';
 import Section from './Section';
 import Form from './Form';
+// import Container from './Container';
+// import css from './App.module.css';
+// import Notification from './Notification';
 
 class App extends Component {
   state = {
     contacts: [],
+    filter: '',
   };
 
-  formSubmitHandler = (data) => {
+  formSubmitHandler = data => {
     const onContact = this.state.contacts.some(id => id.name === data.name);
     if (onContact) {
       alert(`Contact "${data.name}" is already exist.`);
@@ -17,29 +21,35 @@ class App extends Component {
     }
 
     this.setState(prevState => ({
-      contacts: [...prevState.contacts, { ...data, id: nanoid() }]
-    }))
-  }
+      contacts: [...prevState.contacts, { ...data, id: nanoid() }],
+    }));
+  };
 
-  deleteItem = (deletedId) => {
+  onDelete = deleteID => {
     this.setState(prevState => ({
-      contacts: prevState.contacts.filter(({id}) => id !== deletedId)
-    }))
-  }
+      contacts: prevState.contacts.filter(({ id }) => id !== deleteID),
+    }));
+  };
+
+  handleInputChange = e => {
+    this.setState({ filter: e.target.value });
+  };
 
   render() {
-    const {contacts} = this.state;
+    const { filter, contacts } = this.state;
     return (
       <div>
-        <Section title="Phonebook">
-          <Form onSubmit={this.formSubmitHandler} />
-        </Section>
-        <Section title="Contacts">
-          <Contacts 
-            contacts={contacts}
-            onClickDelete={this.deleteItem}
-          />
-        </Section>
+          <Section title="Phonebook">
+              <Form onSubmit={this.formSubmitHandler} />
+            </Section>
+            <Section title="Contacts">
+              <Contacts
+                contacts={contacts}
+                filter={filter}
+                imputChange={this.handleInputChange}
+                onClickDelete={this.onDelete}
+              />
+            </Section>
       </div>
     );
   }
