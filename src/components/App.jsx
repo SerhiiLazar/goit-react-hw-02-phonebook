@@ -3,9 +3,7 @@ import Contacts from './Contacts';
 import { nanoid } from 'nanoid';
 import Section from './Section';
 import Form from './Form';
-// import Container from './Container';
-// import css from './App.module.css';
-// import Notification from './Notification';
+import css from './App.module.css';
 
 class App extends Component {
   state = {
@@ -38,18 +36,18 @@ class App extends Component {
   render() {
     const { filter, contacts } = this.state;
     return (
-      <div>
-          <Section title="Phonebook">
-              <Form onSubmit={this.formSubmitHandler} />
-            </Section>
-            <Section title="Contacts">
-              <Contacts
-                contacts={contacts}
-                filter={filter}
-                imputChange={this.handleInputChange}
-                onClickDelete={this.onDelete}
-              />
-            </Section>
+      <div className={css.appBody}>
+        <Section title="Phonebook">
+          <Form onSubmit={this.formSubmitHandler} />
+        </Section>
+        <Section title="Contacts">
+          <Contacts
+            contacts={contacts}
+            filter={filter}
+            imputChange={this.handleInputChange}
+            onClickDelete={this.onDelete}
+          />
+        </Section>
       </div>
     );
   }

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import css from './Input.module.css';
 
-
 const Input = ({ children, ...other }) => {
   const {
     label,
@@ -16,9 +15,10 @@ const Input = ({ children, ...other }) => {
   } = other;
   return (
     <p>
-      <label  className={css.inputContact}>
+      <label className={css.labelContact}>
         <span className={css.spanContact}>{label}</span>
-        <input 
+        <input
+          className={css.contactsInput}
           value={value}
           onChange={onChange}
           type={type}
@@ -34,13 +34,13 @@ const Input = ({ children, ...other }) => {
 };
 
 Input.ptopTypes = {
-    label: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    type: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    pattern: PropTypes.string,
-    title: PropTypes.string,
-    required: PropTypes.bool,
-}
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  pattern: PropTypes.string,
+  title: PropTypes.string,
+  required: PropTypes.bool,
+};
 export default Input;

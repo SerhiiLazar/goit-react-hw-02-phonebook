@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Notification = ({messege}) => {
-    return (
-        <p>
-            {messege}
-        </p>
-    );
-}; 
+const Notification = ({ message }) => {
+  return <p>{message}</p>;
+};
+
+Notification.propTypes = {
+  message: PropTypes.string.isRequired,
+};
 
 export default Notification;

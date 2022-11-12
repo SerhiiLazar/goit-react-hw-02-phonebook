@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import css from './Form.module.css'
+import css from './Form.module.css';
+import PropTypes from 'prop-types';
 
 class Form extends Component {
   state = {
@@ -25,10 +26,11 @@ class Form extends Component {
 
   render() {
     return (
-      <form className={css.phonebookForm} onSubmit={this.hendleSubmit} >
+      <form className={css.phonebookForm} onSubmit={this.hendleSubmit}>
         <label className={css.label}>
           <p>Name:</p>
-          <input  className={css.input}
+          <input
+            className={css.input}
             type="text"
             name="name"
             onChange={this.handleChenge}
@@ -40,7 +42,8 @@ class Form extends Component {
         </label>
         <label className={css.label}>
           <p>Namber:</p>
-          <input className={css.input}
+          <input
+            className={css.input}
             type="tel"
             name="number"
             onChange={this.handleChenge}
@@ -50,10 +53,16 @@ class Form extends Component {
             required
           />
         </label>
-        <button className={css.formBtn} type="submit">Add contact</button>
+        <button className={css.formBtn} type="submit">
+          Add contact
+        </button>
       </form>
     );
   }
 }
+
+Form.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default Form;
